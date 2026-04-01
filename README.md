@@ -1,81 +1,84 @@
-# draco-updates
+<div align="left">
+  <table>
+    <tr>
+      <td valign="middle">
+        <img src="./icon.png" width="100" height="100" alt="draco-updates icon">
+      </td>
+      <td valign="middle">
+        <h1>draco-updates</h1>
+        <p>This repository stores DracolaxOS update metadata and release files.</p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-This repository stores DracolaxOS update metadata and release files.
+<hr>
 
-## Purpose
+<h2>Purpose</h2>
+<p>DracolaxOS uses this repository as an update source for:</p>
+<ul>
+  <li>online updates</li>
+  <li>offline update packages</li>
+  <li>release bundles</li>
+  <li>stable and test versions</li>
+</ul>
 
-DracolaxOS uses this repository as an update source for:
-
-- online updates
-- offline update packages
-- release bundles
-- stable and test versions
-
-## Repository layout
-
-```text
-index.json
+<h2>Repository layout</h2>
+<pre><code>index.json
 latest.json
 stable/
 beta/
-releases/
-```
+releases/</code></pre>
 
-### `index.json`
+<h3><code>index.json</code></h3>
+<p>The main update index.</p>
+<p>It lists components, versions, download links, and update flags.</p>
 
-The main update index.
+<h3><code>latest.json</code></h3>
+<p>A small stable pointer file.</p>
+<p>It tells the system which versions are current.</p>
 
-It lists components, versions, download links, and update flags.
+<h3><code>stable/</code></h3>
+<p>Contains tested and safe update packages.</p>
 
-### `latest.json`
+<h3><code>beta/</code></h3>
+<p>Contains experimental or test packages.</p>
 
-A small stable pointer file.
+<h3><code>releases/</code></h3>
+<p>Contains release bundles and packaged system update files.</p>
 
-It tells the system which versions are current.
+<hr>
 
-### `stable/`
+<h2>Update flow</h2>
+<p>DracolaxOS reads <code>index.json</code>, compares it with the local system manifest, downloads the needed package, stages it, validates it, then applies it.</p>
+<p>If the update fails, the system can rollback to the previous version.</p>
 
-Contains tested and safe update packages.
+<hr>
 
-### `beta/`
+<h2>File format</h2>
+<p>Update packages use the <code>.drxpkg</code> format.</p>
+<p>A package should contain:</p>
+<ul>
+  <li>a package manifest</li>
+  <li>update files</li>
+  <li>checksums</li>
+  <li>optional scripts</li>
+</ul>
 
-Contains experimental or test packages.
+<hr>
 
-### `releases/`
+<h2>Local offline updates</h2>
+<p>Users can also download a <code>.drxpkg</code> file and install it locally.</p>
+<p>This is useful when the system has no internet access or when a known good version is needed.</p>
 
-Contains release bundles and packaged system update files.
+<hr>
 
-## Update flow
+<h2>Release policy</h2>
+<p>Only push releases that are tested.</p>
+<p>Use stable for normal users.</p>
+<p>Use beta only for testing.</p>
 
-DracolaxOS reads `index.json`, compares it with the local system manifest, downloads the needed package, stages it, validates it, then applies it.
+<hr>
 
-If the update fails, the system can rollback to the previous version.
-
-## File format
-
-Update packages use the `.drxpkg` format.
-
-A package should contain:
-
-- a package manifest
-- update files
-- checksums
-- optional scripts
-
-## Local offline updates
-
-Users can also download a `.drxpkg` file and install it locally.
-
-This is useful when the system has no internet access or when a known good version is needed.
-
-## Release policy
-
-Only push releases that are tested.
-
-Use stable for normal users.
-
-Use beta only for testing.
-
-## License
-
-MIT
+<h2>License</h2>
+<p>MIT</p>
